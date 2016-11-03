@@ -51,15 +51,21 @@ int main(void) {
         return -1;
     }
 
+    // Set JPEG lossy compression to minimal
+    vector <int> compression_params;
+    compression_params.push_back(CV_IMWRITE_JPEG_QUALITY);
+    // 100% best possible quality
+    compression_params.push_back(100);
+
     // Set 1
     beta = (1.0 - alpha);
     addWeighted(image_1, alpha, image_2, beta, 0.0, image_output);
-    imwrite("Image_Blend_50_1.jpg", image_output);
+    imwrite("Image_Blend_50_1.jpg", image_output, compression_params);
 
     // Set 2
     beta = (1.0 - alpha);
     addWeighted(image_3, alpha, image_4, beta, 0.0, image_output);
-    imwrite("Image_Blend_50_2.jpg", image_output);
+    imwrite("Image_Blend_50_2.jpg", image_output, compression_params);
 
     image_6 = imread("Image_Blend_50_1.jpg");
     image_7 = imread("Image_Blend_50_2.jpg");
@@ -76,7 +82,7 @@ int main(void) {
 
     beta = (1.0 - alpha);
     addWeighted(image_5, alpha, image_6, beta, 0.0, image_output);
-    imwrite("Image_Blend_balanced.jpg", image_output);
+    imwrite("Image_Blend_balanced.jpg", image_output, compression_params);
 
     image_8 = imread("Image_Blend_balanced.jpg");
 
@@ -87,7 +93,7 @@ int main(void) {
     }
 
     addWeighted(image_7, alpha, image_8, beta, 0.0, image_output);
-    imwrite("Image_HDR.jpg", image_output);
+    imwrite("Image_HDR.jpg", image_output, compression_params);
 
     return 0;
 }
