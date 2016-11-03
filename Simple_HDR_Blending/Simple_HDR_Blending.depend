@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1478180425 source:d:\documents\qut\beb801\simple_hdr_blending\main.cpp
+	<stdio.h>
+	<iostream>
+	"opencv2/opencv.hpp"
+
